@@ -27,7 +27,7 @@ def get_post():
             age = request.json['age']
         except KeyError:
             return Response(status=400, mimetype='application/json', 
-                            response="{\'result\': \'Mising field\'}")
+                            response='{"result": "Missing field"}')
         db.insert_one(name, lastname, age)
         id = db.find_id_name(name)
         chace.set_one(id, name, lastname, age)
@@ -49,7 +49,7 @@ def update_delete_get(id):
                 res = db.find_one(id)
             except InvalidId:
                 return Response(status=400, mimetype='application/json',
-                            response="{\'result\': \'Doesn\'t exist in DB!!\'}")
+                            response='{"result": "Doesn\'t exist in DB!!"}')
         return jsonify(res)
     elif request.method == 'DELETE':
         try:
@@ -57,7 +57,7 @@ def update_delete_get(id):
             chace.delete_one(id)
         except InvalidId:
             return Response(status=400, mimetype='application/json', 
-                            response="{\'result\': \'Doesn\'t exist in DB!!\'}")
+                            response='{"result": "Doesn\'t exist in DB!!"}')
         return {'message': 'Deleted User'}
     elif request.method == 'PATCH':
         try:
@@ -66,12 +66,12 @@ def update_delete_get(id):
             age = request.json['age']
         except KeyError:
             return Response(status=400, mimetype='application/json', 
-                            response="{\'result\': \'Mising field\'}")
+                            response='{"result": "Missing field"}')
         try:
             db.update_one(id, name, lastname, age)
         except InvalidId:
             return Response(status=400, mimetype='application/json', 
-                            response="{\'result\': \'Invalid Id!!\'}")
+                            response='{"result": "Invalid Id!!"}')
             chace.delete_one(id)
             chace.set_one(id, name, lastname, age)
         return {'message': 'Patched User'}
