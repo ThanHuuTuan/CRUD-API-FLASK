@@ -21,7 +21,7 @@ To build the module, run make in the project's directory.
 ```
 ####RUNING THE APP
 ```
-$redis-server --loadmodule /home/d3ni/ReJSON/RedisJSON/src/rejson.so
+$redis-server --loadmodule path_to/RedisJSON/src/rejson.so
 $redis-cli --raw
 $mongo
 $use students

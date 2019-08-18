@@ -38,7 +38,7 @@ def update_delete_get(id):
     '''
     1.Lets you get one student with a GET request by suplying the student ID .
     2.Lets you delete a student with a DELETE request by suplying the student ID.
-    2.Lets you delete a student with a DELETE request by suplying the student ID 
+    2.Lets you delete a student with a PATCH request by suplying the student ID 
       and the users name lastname ang age in JSON format.
     '''
     if request.method == 'GET':
