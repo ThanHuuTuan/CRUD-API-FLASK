@@ -6,7 +6,7 @@ CHACE = REDIS with ReJSON module loaded.
 ```
 ####INSTALLATION & PREP
 ```
-1. Pull from git http://example.com/
+1. Pull from git https://github.com/dript0hard/REST-API-FLASK
 2. Install required packages to run the app.
 $apt-get install mongodb
 $apt-get install redis-server redis-cli
