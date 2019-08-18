@@ -10,8 +10,8 @@ CHACE = REDIS with ReJSON module loaded.
 2. Install required packages to run the app.
 $apt-get install mongodb
 $apt-get install redis-server redis-cli
-$python3 -m pip install --user --upgrade setuptools wheel        
-$python3 -m pip install -e 
+$python3.7 -m pip install --user --upgrade setuptools wheel        
+$python3.7 -m pip install -e 
 
 After these steps make shure to have installed ReJSON module for redis-server.
 
