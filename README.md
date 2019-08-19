@@ -27,7 +27,6 @@ $mongo
 $use students
 $export FLASK_APP=students2
 $export FLASK_ENV=development
-$flask init-chace
 $flask run
 ```
 ####ROUTES AND SENDING REQUESTS

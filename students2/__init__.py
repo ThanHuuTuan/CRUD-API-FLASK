@@ -13,7 +13,6 @@ def create_app(test_config=None):
 
     from . import chace
     app.register_blueprint(chace.bp)
-    chace.init_chace(app)
     
     from . import views
     app.register_blueprint(views.bp)
