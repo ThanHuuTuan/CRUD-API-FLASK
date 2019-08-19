@@ -2,7 +2,7 @@
 ```
 Simple flask application that stores students with their name, lastname and age.
 Database = MONGODB
-CHACE = REDIS with ReJSON module loaded.
+CACHE = REDIS with ReJSON module loaded.
 ```
 ####INSTALLATION & PREP
 ```
@@ -48,6 +48,6 @@ $http DELETE :5000/students/{copied id from second request}
 ``` 
 1.Creating a REST API that can be implemeted in CRUD web app.
 2.Basics of the FLASK framework.
-3.Wrapping the pyredis and pymongo module functions as needed to work with the database and chace.
+3.Wrapping the pyredis and pymongo module functions as needed to work with the database and cache.
 4.Making python modules installable with setuptools.
 ```

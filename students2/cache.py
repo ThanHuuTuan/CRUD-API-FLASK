@@ -2,7 +2,7 @@ from flask import Blueprint
 from json import (loads, dumps)
 import redis 
 
-bp = Blueprint('chace', __name__)
+bp = Blueprint('cache', __name__)
 
 client = redis.StrictRedis()
 _path='.'

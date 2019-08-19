@@ -2,7 +2,7 @@ from flask import (Blueprint, request, jsonify, Response)
 from bson.errors import InvalidId
 
 from students2 import db 
-from students2.chace import (get_one, get_all)
+from students2.cache import (get_one, get_all)
 bp = Blueprint('views', __name__)
 
 @bp.route('/students', methods=['GET','POST'])
@@ -13,7 +13,7 @@ def get_post():
       users name lastname ang age in JSON format.
     '''
     if request.method == 'GET':
-        res = chace.get_all()
+        res = get_all()
         if len(res) == 0:
             res = db.find_all()
             if len(res) == 0:
@@ -40,7 +40,7 @@ def update_delete_get(id):
     '''
     if request.method == 'GET':
         try:
-            res = chace.get_one(id)
+            res = get_one(id)
         except (TypeError, InvalidId):
             try:    
                 res = db.find_one(id)

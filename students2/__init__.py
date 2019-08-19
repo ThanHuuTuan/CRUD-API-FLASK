@@ -11,8 +11,8 @@ def create_app(test_config=None):
     from . import db
     app.register_blueprint(db.bp)
 
-    from . import chace
-    app.register_blueprint(chace.bp)
+    from . import cache
+    app.register_blueprint(cache.bp)
     
     from . import views
     app.register_blueprint(views.bp)
