@@ -24,7 +24,7 @@ def get_post():
             name = request.json['name']
             lastname = request.json['lastname']
             age = request.json['age']
-        except KeyError:
+        except (TypeError, KeyError):
             return Response(status=400, mimetype='application/json', 
                             response='{"result": "Missing field"}')
         db.insert_one(name, lastname, age)
@@ -60,7 +60,7 @@ def update_delete_get(id):
             name = request.json['name']
             lastname = request.json['lastname']
             age = request.json['age']
-        except KeyError:
+        except (TypeError, KeyError):
             return Response(status=400, mimetype='application/json', 
                             response='{"result": "Missing field"}')
         try:
