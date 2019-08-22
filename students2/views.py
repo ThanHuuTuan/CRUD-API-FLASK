@@ -2,7 +2,7 @@ from flask import (Blueprint, request, jsonify, Response)
 from bson.errors import InvalidId
 
 from students2 import db 
-from students2.cache import (get_one, get_all)
+from students2.cache import (get_one, get_all, try_connection)
 bp = Blueprint('views', __name__)
 
 @bp.route('/students', methods=['GET','POST'])
@@ -13,7 +13,10 @@ def get_post():
       users name lastname ang age in JSON format.
     '''
     if request.method == 'GET':
-        res = get_all()
+        if try_connection():
+            res = get_all()
+        else:
+            res = []
         if len(res) == 0:
             res = db.find_all()
             if len(res) == 0:
@@ -39,9 +42,17 @@ def update_delete_get(id):
       and the users name lastname ang age in JSON format.
     '''
     if request.method == 'GET':
-        try:
-            res = get_one(id)
-        except (TypeError, InvalidId):
+        if try_connection():
+            try:
+                res = get_one(id)
+            except (TypeError, InvalidId):
+                try:    
+                    res = db.find_one(id)
+                except (InvalidId, TypeError):
+                    return Response(status=400, mimetype='application/json',
+                                response='{"result": "Doesn\'t exist in DB!!"}')
+            return jsonify(res)
+        else:
             try:    
                 res = db.find_one(id)
             except (InvalidId, TypeError):
