@@ -31,7 +31,8 @@ def get_post():
             return Response(status=400, mimetype='application/json', 
                             response='{"result": "Missing field"}')
         db.insert_one(name, lastname, age)
-        return {'message': 'Added User'}
+        return Response(status=201, mimetype='application/json',
+                        response={'message': 'Added User'})
 
 @bp.route('/students/<string:id>', methods=['GET', 'PATCH', 'DELETE'])
 def update_delete_get(id):
