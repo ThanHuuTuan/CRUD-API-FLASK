@@ -17,7 +17,7 @@ def get_post():
             res = get_all()
         else:
             res = []
-        if len(res) == 0:
+        if len(res) <= db.db.count_documents(filter={}):
             res = db.find_all()
             if len(res) == 0:
                 return {'result': 'No users'}
@@ -32,7 +32,7 @@ def get_post():
                             response='{"result": "Missing field"}')
         db.insert_one(name, lastname, age)
         return Response(status=201, mimetype='application/json',
-                        response={'message': 'Added User'})
+                        response='{"message": "Added User"}')
 
 @bp.route('/students/<string:id>', methods=['GET', 'PATCH', 'DELETE'])
 def update_delete_get(id):
