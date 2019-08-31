@@ -39,7 +39,7 @@ def update_delete_get(id):
     '''
     1.Lets you get one student with a GET request by suplying the student ID .
     2.Lets you delete a student with a DELETE request by suplying the student ID.
-    2.Lets you delete a student with a PATCH request by suplying the student ID 
+    3.Lets you delete a student with a PATCH request by suplying the student ID 
       and the users name lastname ang age in JSON format.
     '''
     if request.method == 'GET':
@@ -51,7 +51,7 @@ def update_delete_get(id):
                     res = db.find_one(id)
                 except (InvalidId, TypeError):
                     return Response(status=400, mimetype='application/json',
-                                response='{"result": "Doesn\'t exist in DB!!"}')
+                                    response='{"result": "Doesn\'t exist in DB!!"}')
             return jsonify(res)
         else:
             try:    
