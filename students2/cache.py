@@ -21,7 +21,7 @@ def get_one(mkey):
 
 def set_one(id, name, lastname, age):
     mkey = str(id)
-    mval = {"_id":id, "name":name, "lastname":lastname, "age":age}
+    mval = {'_id':id, 'name':name, 'lastname':lastname, 'age':age}
     set_data(mkey, mval)
 
 def delete_one(mkey):
