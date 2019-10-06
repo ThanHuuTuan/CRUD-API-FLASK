@@ -1,17 +1,11 @@
 from flask import (Blueprint, request, jsonify, Response)
 from bson.errors import InvalidId
-
 from students2 import db 
 from students2.cache import (get_one, get_all, try_connection)
 bp = Blueprint('views', __name__)
 
 @bp.route('/students', methods=['GET','POST'])
-def get_post():
-	'''
-	1.Lets you get all the student with a GET request.
-	2.Lets you add a new student with a POST request by suplying the 
-	  users name lastname and age in JSON format.
-	'''
+def get_students():
 	if request.method == 'GET':
 		if try_connection():
 			res = get_all()
@@ -22,7 +16,10 @@ def get_post():
 			if len(res) == 0:
 				return {'result': 'No users'}
 		return jsonify(res) 
-	elif request.method == 'POST':
+
+@bp.route('/students', methods=['GET','POST'])
+def add_student(): 
+	if request.method == 'POST':
 		try:
 			name = request.json['name']
 			lastname = request.json['lastname']
@@ -35,13 +32,7 @@ def get_post():
 						response='{"message": "Added User"}')
 
 @bp.route('/students/<string:id>', methods=['GET', 'PATCH', 'DELETE'])
-def update_delete_get(id):
-	'''
-	1.Lets you get one student with a GET request by suplying the student ID .
-	2.Lets you delete a student with a DELETE request by suplying the student ID.
-	3.Lets you delete a student with a PATCH request by suplying the student ID 
-	  and the users name lastname and age in JSON format.
-	'''
+def get_student(id):
 	if request.method == 'GET':
 		if try_connection():
 			try:
@@ -60,14 +51,20 @@ def update_delete_get(id):
 				return Response(status=400, mimetype='application/json',
 							response='{"result": "Doesn\'t exist in DB!!"}')
 		return jsonify(res)
-	elif request.method == 'DELETE':
+
+@bp.route('/students/<string:id>', methods=['GET', 'PATCH', 'DELETE'])
+def delete_student(id):
+	if request.method == 'DELETE':
 		try:
 			res = db.delete_one(id)
 		except InvalidId:
 			return Response(status=400, mimetype='application/json', 
 							response='{"result": "Doesn\'t exist in DB!!"}')
 		return {'message': 'Deleted User'}
-	elif request.method == 'PATCH':
+
+@bp.route('/students/<string:id>', methods=['GET', 'PATCH', 'DELETE'])
+def patch_student(id):
+	if request.method == 'PATCH':
 		try:
 			name = request.json['name']
 			lastname = request.json['lastname']
