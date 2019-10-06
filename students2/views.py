@@ -2,9 +2,10 @@ from flask import (Blueprint, request, jsonify, Response)
 from bson.errors import InvalidId
 from students2 import db 
 from students2.cache import (get_one, get_all, try_connection)
+
 bp = Blueprint('views', __name__)
 
-@bp.route('/students', methods=['GET','POST'])
+@bp.route('/students', methods=['GET'])
 def get_students():
 	if request.method == 'GET':
 		if try_connection():
@@ -17,7 +18,7 @@ def get_students():
 				return {'result': 'No users'}
 		return jsonify(res) 
 
-@bp.route('/students', methods=['GET','POST'])
+@bp.route('/students', methods=['POST'])
 def add_student(): 
 	if request.method == 'POST':
 		try:
@@ -31,7 +32,7 @@ def add_student():
 		return Response(status=201, mimetype='application/json',
 						response='{"message": "Added User"}')
 
-@bp.route('/students/<string:id>', methods=['GET', 'PATCH', 'DELETE'])
+@bp.route('/students/<string:id>', methods=['GET'])
 def get_student(id):
 	if request.method == 'GET':
 		if try_connection():
@@ -52,7 +53,7 @@ def get_student(id):
 							response='{"result": "Doesn\'t exist in DB!!"}')
 		return jsonify(res)
 
-@bp.route('/students/<string:id>', methods=['GET', 'PATCH', 'DELETE'])
+@bp.route('/students/<string:id>', methods=['DELETE'])
 def delete_student(id):
 	if request.method == 'DELETE':
 		try:
@@ -62,7 +63,7 @@ def delete_student(id):
 							response='{"result": "Doesn\'t exist in DB!!"}')
 		return {'message': 'Deleted User'}
 
-@bp.route('/students/<string:id>', methods=['GET', 'PATCH', 'DELETE'])
+@bp.route('/students/<string:id>', methods=['PATCH'])
 def patch_student(id):
 	if request.method == 'PATCH':
 		try:
