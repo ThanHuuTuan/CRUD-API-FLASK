@@ -28,6 +28,7 @@ $use students
 $export FLASK_APP=students2
 $export FLASK_ENV=development
 $flask run
+$python3.7 wsgi.py <port number>
 ```
 ####ROUTES AND SENDING REQUESTS
 ```
