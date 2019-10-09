@@ -1,3 +1,4 @@
+#!/usr/bin/env python3.7
 import sys
 import os 
 from students2.__init__ import create_app
