@@ -32,10 +32,14 @@ $python3.7 wsgi.py <port number>
 ```
 ####ROUTES AND SENDING REQUESTS
 ```
-    Endpoint                 Methods             Rule
------------------------  ------------------  -----------------------
-views.get_post           GET, POST           /students
-views.update_delete_get  DELETE, GET, PATCH  /students/<string:id>
+Endpoint              Methods  Rule
+--------------------  -------  -----------------------
+static                GET      /static/<path:filename>
+views.add_student     POST     /students
+views.delete_student  DELETE   /students/<string:id>
+views.get_student     GET      /students/<string:id>
+views.get_students    GET      /students
+views.patch_student   PATCH    /students/<string:id>
 
 In this example the module httpie is used you can use POSTMAN to test
 
