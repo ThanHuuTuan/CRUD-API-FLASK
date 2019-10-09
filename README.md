@@ -11,7 +11,7 @@ CACHE = REDIS with ReJSON module loaded.
 $apt-get install mongodb
 $apt-get install redis-server redis-cli
 $python3.7 -m pip install --user --upgrade setuptools wheel        
-$python3.7 -m pip install -e 
+$python3.7 -m pip install -r requirements.txt 
 
 After these steps make shure to have installed ReJSON module for redis-server.
 
