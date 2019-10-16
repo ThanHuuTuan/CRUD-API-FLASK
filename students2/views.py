@@ -7,16 +7,16 @@ bp = Blueprint('views', __name__)
 
 @bp.route('/students', methods=['GET'])
 def get_students():
-	if request.method == 'GET':
-		if try_connection():
-			res = get_all()
-		else:
-			res = []
-		if len(res) <= db.db.count_documents(filter={}):
-			res = db.find_all()
-			if len(res) == 0:
-				return {'result': 'No users'}
-		return jsonify(res) 
+    if request.method == 'GET':
+        if try_connection():
+            res = get_all()
+        else:
+            res = []
+        if len(res) <= db.db.count_documents(filter={}):
+            res = db.find_all()
+            if len(res) == 0:
+                return {'result':'No users'}
+        return jsonify(res) 
 
 @bp.route('/students', methods=['POST'])
 def add_student(): 

@@ -9,7 +9,6 @@ _DATABASE_URI='mongodb://localhost:27017'
 client = pymongo.MongoClient(_DATABASE_URI)
 db = client.students.students
 
-
 def insert_one(name, lastname, age):
     db.insert_one({'name':name, 'lastname':lastname, 'age':age})
     if cache.try_connection():

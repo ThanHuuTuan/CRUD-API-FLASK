@@ -10,6 +10,7 @@ if __name__=='__main__':
         port=sys.argv[1]
     except Exception:
         print("Usage: python3.7 wsgi.py <port number>")
+        print("Usage: ./ wsgi.py <port number>")
         sys.exit(0)
     app=create_app()
     app.run(port=port)
